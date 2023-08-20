@@ -7,14 +7,6 @@
 
 struct Application 
 {
-private:
-	Renderer* renderer = nullptr;
-	Mouse* mouse = nullptr;
-	Cloth* cloth = nullptr;
-
-	bool isRunning = false;
-
-	Uint32 lastUpdateTime;
 public:
 	Application() = default;
 	~Application() = default;
@@ -26,4 +18,16 @@ public:
 	void Update();
 	void Render() const;
 	void Destroy();
+
+private:
+	Renderer* renderer = nullptr;
+	Mouse* mouse = nullptr;
+	Cloth* cloth = nullptr;
+
+	bool isRunning = false;
+
+	Uint32 lastUpdateTime;
+
+	int frames_{ 0 };
+	double framesTime_{ 0.0 };
 };

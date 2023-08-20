@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Application.h"
 
+#include "PerformanceCounter.h"
+
 void Application::Setup(int clothWidth, int clothHeight, int clothSpacing)
 {
 	renderer = new Renderer();
@@ -10,10 +12,10 @@ void Application::Setup(int clothWidth, int clothHeight, int clothSpacing)
 
 	clothWidth /= clothSpacing;
 	clothHeight /= clothSpacing;
-	int startX = renderer->GetWindowWidth() * 0.5f - clothWidth * clothSpacing * 0.5f;
-	int startY = renderer->GetWindowHeight() * 0.1f;
+	float startX = renderer->GetWindowWidth() * 0.5f - clothWidth * clothSpacing * 0.5f;
+	float startY = renderer->GetWindowHeight() * 0.1f;
 
-	cloth = new Cloth(clothWidth, clothHeight, clothSpacing, startX, startY);
+	cloth = new Cloth(clothWidth, clothHeight, static_cast<float>(clothSpacing), startX, startY);
 
 	lastUpdateTime = SDL_GetTicks();
 }
@@ -80,13 +82,26 @@ void Application::Input()
 }
 
 void Application::Update()
-{	
-	Uint32 currentTime = SDL_GetTicks();
-	float deltaTime = (currentTime - lastUpdateTime) / 1000.0f;
+{
+	auto &pc = PerformanceCounter::instance();
 
-	cloth->Update(renderer, mouse, deltaTime);
+	while (true) {
+		Uint32 currentTime = SDL_GetTicks();
+		const float deltaTime = (currentTime - lastUpdateTime) / 1000.0f;
+		lastUpdateTime = currentTime;
 
-	lastUpdateTime = currentTime;
+		pc.start();
+
+		cloth->Update(renderer, mouse, deltaTime);
+
+		framesTime_ += pc.stop();
+		frames_ += 1;
+		if (framesTime_ > 1.0) {
+			std::cout << "FPS: " << frames_ << std::endl;
+			frames_ = 0;
+			framesTime_ = 0.0;
+		}
+	}
 }
 
 void Application::Render() const

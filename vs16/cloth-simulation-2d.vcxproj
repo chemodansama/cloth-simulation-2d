@@ -15,6 +15,7 @@
     <ClCompile Include="..\source\Cloth.cpp" />
     <ClCompile Include="..\source\Main.cpp" />
     <ClCompile Include="..\source\Mouse.cpp" />
+    <ClCompile Include="..\source\PerformanceCounter.cpp" />
     <ClCompile Include="..\source\Renderer.cpp" />
     <ClCompile Include="..\source\Point.cpp" />
     <ClCompile Include="..\source\Stick.cpp" />
@@ -23,6 +24,7 @@
     <ClInclude Include="..\source\Application.h" />
     <ClInclude Include="..\source\Cloth.h" />
     <ClInclude Include="..\source\Mouse.h" />
+    <ClInclude Include="..\source\PerformanceCounter.h" />
     <ClInclude Include="..\source\Renderer.h" />
     <ClInclude Include="..\source\Point.h" />
     <ClInclude Include="..\source\Stick.h" />
