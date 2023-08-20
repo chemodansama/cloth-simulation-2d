@@ -13,6 +13,10 @@ void Point::AddStick(Stick* stick, int index)
 
 void Point::SetPosition(float x, float y)
 {
+	if (isPinned) {
+		return;
+	}
+
 	pos.x = x;
 	pos.y = y;
 }
@@ -35,7 +39,7 @@ void Point::Update(float deltaTime, float drag, const Vec2& acceleration, float 
 		}
 	}
 
-	if(mouse->GetLeftButtonDown() && isSelected) {
+	if (mouse->GetLeftButtonDown() && isSelected) {
 		Vec2 difference = mouse->GetPosition() - mouse->GetPreviousPosition();
 
 		if (difference.x > elasticity) difference.x = elasticity;
