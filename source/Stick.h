@@ -3,6 +3,7 @@
 #include "Renderer.h"
 
 class Point;
+
 class Stick
 {
 private:
