@@ -85,22 +85,20 @@ void Application::Update()
 {
 	auto &pc = PerformanceCounter::instance();
 
-	while (true) {
-		Uint32 currentTime = SDL_GetTicks();
-		const float deltaTime = (currentTime - lastUpdateTime) / 1000.0f;
-		lastUpdateTime = currentTime;
+	Uint32 currentTime = SDL_GetTicks();
+	const float deltaTime = (currentTime - lastUpdateTime) / 1000.0f;
+	lastUpdateTime = currentTime;
 
-		pc.start();
+	pc.start();
 
-		cloth->Update(renderer, mouse, deltaTime);
+	cloth->Update(renderer, mouse, deltaTime);
 
-		framesTime_ += pc.stop();
-		frames_ += 1;
-		if (framesTime_ > 1.0) {
-			std::cout << "FPS: " << frames_ << std::endl;
-			frames_ = 0;
-			framesTime_ = 0.0;
-		}
+	framesTime_ += pc.stop();
+	frames_ += 1;
+	if (framesTime_ > 1.0) {
+		std::cout << "FPS: " << frames_ << std::endl;
+		frames_ = 0;
+		framesTime_ = 0.0;
 	}
 }
 
