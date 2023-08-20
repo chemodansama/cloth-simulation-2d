@@ -29,14 +29,13 @@ void Point::Update(float deltaTime, float drag, const Vec2& acceleration, float 
 	float cursorSize = mouse->GetCursorSize();
 	isSelected = cursorToPosDist < cursorSize * cursorSize;
 
-	for (Stick* stick : sticks) 
-	{
-		if(stick != nullptr)
+	for (Stick* stick : sticks) {
+		if (stick) {
 			stick->SetIsSelected(isSelected);
+		}
 	}
 
-	if(mouse->GetLeftButtonDown() && isSelected)
-	{
+	if(mouse->GetLeftButtonDown() && isSelected) {
 		Vec2 difference = mouse->GetPosition() - mouse->GetPreviousPosition();
 
 		if (difference.x > elasticity) difference.x = elasticity;
@@ -47,11 +46,9 @@ void Point::Update(float deltaTime, float drag, const Vec2& acceleration, float 
 		prevPos = pos - difference;
 	}
 
-	if (mouse->GetRightMouseButton() && isSelected) 
-	{
-		for (Stick* stick : sticks)
-		{
-			if (stick != nullptr)
+	if (mouse->GetRightMouseButton() && isSelected) {
+		for (Stick* stick : sticks) {
+			if (stick)
 				stick->Break();
 		}
 	}

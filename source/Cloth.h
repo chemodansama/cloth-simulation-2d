@@ -11,13 +11,12 @@ private:
 	float drag = 0.01f;
 	float elasticity = 10.0f;
 
-	std::vector<Point*> points;
-	std::vector<Stick*> sticks;
+	std::vector<Point> points;
+	std::vector<Stick> sticks;
 
 public:
 	Cloth() = default;
-	Cloth(int width, int height, int spacing, int startX, int startY);
-	~Cloth();
+	Cloth(int width, int height, float spacing, float startX, float startY);
 
 	void Update(Renderer* renderer, Mouse* mouse, float deltaTime);
 	void Draw(Renderer* renderer) const;
