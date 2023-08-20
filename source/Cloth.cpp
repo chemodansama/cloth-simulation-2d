@@ -40,12 +40,13 @@ void Cloth::Update(Renderer* renderer, Mouse* mouse, float deltaTime)
 	for (auto &p : points)
 	{
 		p.Update(deltaTime, drag, gravity, elasticity, mouse, renderer->GetWindowWidth(), renderer->GetWindowHeight());
-	};
+	}
 
-	for (auto &stick : sticks)
-	{
-		stick.Update();
-	};
+	for (int i = 0; i < 10; i++) {
+		for (auto &stick : sticks) {
+			stick.Update();
+		}
+	}
 }
 
 void Cloth::Draw(Renderer* renderer) const
