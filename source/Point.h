@@ -20,9 +20,7 @@ private:
 	void KeepInsideView(int width, int height);
 
 public:
-	Point() = default;
 	Point(float x, float y);
-	~Point() = default;
 
 	void AddStick(Stick* stick, int index);
 
