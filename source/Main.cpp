@@ -1,5 +1,5 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include "Application.h"
 
 int main(int argc, char* args[])

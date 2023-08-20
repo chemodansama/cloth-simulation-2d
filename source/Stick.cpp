@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include "Stick.h"
 #include "Point.h"
 
